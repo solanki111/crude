@@ -31,6 +31,24 @@ if (!$pdo) {
     exit;
 }
 
+// creating table
+
+$sql = "CREATE TABLE IF NOT EXISTS employees (
+                id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                name VARCHAR(100) NOT NULL,
+                address VARCHAR(255) NOT NULL,
+                salary INT(10) NOT NULL);";
+
+// Create student table
+$success = $pdo->query($sql);
+if ($success) {
+	echo "Table has been created";
+}
+else {
+        echo "Error creating table";  
+}
+
+
 /*try {
     // create the database
     $sql = "CREATE DATABASE IF NOT EXISTS $connectstr_dbname";
