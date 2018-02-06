@@ -17,6 +17,11 @@ foreach ($_SERVER as $key => $value) {
     $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
 }
 
+echo "dbhost = $connectstr_dbhost" . PHP_EOL;
+echo "dbname = $connectstr_dbname" . PHP_EOL;
+echo "username = $connectstr_dbusername" . PHP_EOL;
+echo "password = $connectstr_dbpassword" . PHP_EOL;
+
 $pdo = mysqli_connect($connectstr_dbhost, $connectstr_dbusername, $connectstr_dbpassword,$connectstr_dbname);
 
 if (!$pdo) {
