@@ -28,11 +28,11 @@ if (!$pdo) {
 
 try {
     // create the database
-    $sql = "CREATE DATABASE IF NOT EXISTS musicDB";
+    $sql = "CREATE DATABASE IF NOT EXISTS $connectstr_dbname";
     $pdo->exec($sql);
     
     // switch to the database
-    $sql = "use musicDB";
+    $sql = "use $connectstr_dbname";
     $pdo->exec($sql);
     
     // create its table
