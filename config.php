@@ -26,7 +26,7 @@ if (!$pdo) {
     exit;
 }
 
-try {
+/*try {
     // create the database
     $sql = "CREATE DATABASE IF NOT EXISTS $connectstr_dbname";
     $pdo->exec($sql);
@@ -47,6 +47,6 @@ try {
 catch(PDOException $e)
 {
     echo $sql . "<br>" . $e->getMessage();
-}
+}*/
 
 ?>
