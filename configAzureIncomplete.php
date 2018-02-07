@@ -6,6 +6,8 @@ $connectstr_dbname = '';
 $connectstr_dbusername = '';
 $connectstr_dbpassword = '';
 
+
+// MS Azure does not allow direct access to MySQL configuration, only via environment
 foreach ($_SERVER as $key => $value) {
     if (strpos($key, "MYSQLCONNSTR_localdb") !== 0) {
         continue;
@@ -17,11 +19,6 @@ foreach ($_SERVER as $key => $value) {
     $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
 }
 
-//echo "dbhost = $connectstr_dbhost" . PHP_EOL;
-//echo "dbname = $connectstr_dbname" . PHP_EOL;
-//echo "username = $connectstr_dbusername" . PHP_EOL;
-//echo "password = $connectstr_dbpassword" . PHP_EOL;
-
 $pdo = mysqli_connect($connectstr_dbhost, $connectstr_dbusername, $connectstr_dbpassword,$connectstr_dbname);
 
 if (!$pdo) {
@@ -31,45 +28,8 @@ if (!$pdo) {
     exit;
 }
 
-// creating table
+// TODO make sure DB exists
 
-$sql = "CREATE TABLE IF NOT EXISTS employees (
-                id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                name VARCHAR(100) NOT NULL,
-                address VARCHAR(255) NOT NULL,
-                salary INT(10) NOT NULL);";
-
-// Create student table
-$success = $pdo->query($sql);
-if ($success) {
-	echo "Table has been created";
-}
-else {
-        echo "Error creating table";  
-}
-
-
-/*try {
-    // create the database
-    $sql = "CREATE DATABASE IF NOT EXISTS $connectstr_dbname";
-    $pdo->exec($sql);
-    
-    // switch to the database
-    $sql = "use $connectstr_dbname";
-    $pdo->exec($sql);
-    
-    // create its table
-    $sql = "CREATE TABLE IF NOT EXISTS employees (
-                id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                name VARCHAR(100) NOT NULL,
-                address VARCHAR(255) NOT NULL,
-                salary INT(10) NOT NULL);";
-    $pdo->exec($sql);
-    echo "DB created successfully";
-}
-catch(PDOException $e)
-{
-    echo $sql . "<br>" . $e->getMessage();
-}*/
+// TODO create table (only once, if it does not yet exist)
 
 ?>
