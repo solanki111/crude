@@ -2,10 +2,10 @@
 
 /* Database credentials. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'crude');
+define('DB_SERVER', 'crudedbs.database.windows.net');
+define('DB_USERNAME', 'rooter');
 define('DB_PASSWORD', 'crude');
-define('DB_NAME', 'crude');
+define('DB_NAME', 'Test1234');
  
 /* Attempt to connect to MySQL database */
 try{
