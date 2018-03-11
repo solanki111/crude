@@ -1,12 +1,5 @@
 <?php
 
-session_start();
-
-if(!isset($_SESSION['user_info']) && is_array($_SESSION['user_info'])) { 
-    //echo 'not logged in';
-    header("location: index.php");
-    exit();
-}
 //load the database configuration file
 include 'config.php';
 
