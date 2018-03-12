@@ -32,30 +32,16 @@ include("config.php");
 <?php
 	$error = '';
 	if(isset($_POST['is_login'])){
-            //To set cookies
-                //$username = $_POST['username'];
-                //$password = $_POST['password'];
-                //$rememberme = $_POST['rememberme'];
-                
+ 
 		$sql = "SELECT * FROM ".$SETTINGS["USERS"]." WHERE `email` = '".mysql_real_escape_string($_POST['email'])."' AND `password` = '".mysql_real_escape_string($_POST['password'])."'";
 		$sql_result = mysql_query ($sql, $connection ) or die ('request "Could not execute SQL query" '.$sql);
 		$user = mysql_fetch_assoc($sql_result);
 		if(!empty($user)){
-                        //$_SESSION["loggedIn"] = true;
                         $_SESSION["login"] = "OK";
 			$_SESSION['user_info'] = $user;
 			$query = " UPDATE ".$SETTINGS["USERS"]." SET last_login = NOW() WHERE id=".$user['id'];
 			mysql_query ($query, $connection ) or die ('request "Could not execute SQL query" '.$query);
                         
-                        if(isset($rememberme)) {
-                        //set cookie to last one year
-                        setcookie('username', $_POST['username'], time()+60*60*24*365, '/', 'localhost');
-                        setcookie('password', md5($_POST['user_password']), time()+60*60*24*365, '/', 'localhost');
-                        } else {
-                            //cookie expires when browser closes
-                            setcookie('username', $_POST['username'], false, '/', 'localhost');
-                            setcookie('password', md5($_POST['user_password']), false, '/', 'localhost');   
-                        }
 		}
 		else{
 			$error = 'Wrong email or password.';
