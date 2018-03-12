@@ -1,4 +1,6 @@
 <?php
+// Include config file
+require_once 'config.php';
 
 // Define variables and initialize with empty values
 $name = $address = $salary = $email = "";
@@ -37,9 +39,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //Validate email address
     $input_email = trim($_POST["email"]);
     if(empty($input_email)){
-        $email_err = "Please enter an email address."; 
-    //} elseif (! (strlen($email) && preg_match("/^[a-z0-9._+-]{1,64}@(?:[a-z0-9-]{1,63}\.){1,125}[a-z]{2,63}$/", $email)) > 0) {
-    //} elseif (! (strlen($input_email) > 0 && preg_match("/^[a-z0-9._+-]{1,64}@(?:[a-z0-9-]{1,63}\.){1,125}[a-z]{2,63}$/", $input_email))) {   
+        $email_err = "Please enter an email address.";   
     } elseif(filter_var($input_email, FILTER_VALIDATE_EMAIL) === FALSE) {
         $email_err = "Please enter a valid E-mail ID"; 
     } else {
